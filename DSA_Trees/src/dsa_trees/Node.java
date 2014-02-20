@@ -1,7 +1,8 @@
 package dsa_trees;
 
 
-public class Node {
+public class Node 
+{
     
     // Private data items
     private Node left;
@@ -9,43 +10,51 @@ public class Node {
     private Node parent;   // keep a refrence 
     private int key;
 
-    public Node(int key) {
+    public Node(int key) 
+    {
         this.key = key;
         left = null;
         right = null;
     }
 
-    public void setLeftChild(Node left) {
+    public void setLeftChild(Node left) 
+    {
         this.left = left;
     }
 
-    public void setRightChild(Node right) {
+    public void setRightChild(Node right) 
+    {
         this.right = right;
     }
 
-    public void setKey(int key) {
+    public void setKey(int key) 
+    {
         this.key = key;
     }
 
-    public void setParent(Node parent) {
+    public void setParent(Node parent) 
+    {
         this.parent = parent;
     }
 
-    public Node getLeftChild() {
+    public Node getLeftChild() 
+    {
         return left;
     }
 
-    public Node getRightChild() {
+    public Node getRightChild() 
+    {
         return right;
     }
 
-    public int getKey() {
+    public int getKey() 
+    {
         return key;
     }
 
-    public Node getParent() {
+    public Node getParent() 
+    {
         return parent;
     }
-
-   
+    
 }

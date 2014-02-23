@@ -58,7 +58,6 @@ public class database {
             {
                 System.out.print(result.getString(1) + " " + result.getString(2) + " " + result.getString(3) + " " + result.getString(4) + "\n");
             }
-            con.close();
         }
         catch( SQLException sql)
         {

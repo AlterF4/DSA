@@ -23,9 +23,9 @@ public class BinaryTree
     }
 
     // inserting a new node
-    public void insert(int key) 
+    public void insert(int key,String name,String fst_name,String sur_name) 
     { 
-        Node new_node = new Node(key);
+        Node new_node = new Node(key,name,fst_name,sur_name);
 
         if (root == null) 
         {
@@ -40,13 +40,13 @@ public class BinaryTree
     }
 
       // find a node in the tree
-    public Node find(int value) 
+    public Node find(int value,String name,String fst_name,String sur_name) 
     {
         if (root != null) 
         {
     // if the root is null there is no tree;
    //  if the root is not null, node will search recursivly 
-            return findNode(root, new Node(value));
+            return findNode(root, new Node(value,name,fst_name,sur_name));
         }
         return null;
         
@@ -79,9 +79,9 @@ public class BinaryTree
 
 
 // Delete nodes from the tree
-    public boolean delete(int value) 
+    public boolean delete(int value,String name,String fst_name,String sur_name) 
     {
-        Node nodeToDelete = find(value);
+        Node nodeToDelete = find(value,name,fst_name,sur_name);
 
         if (nodeToDelete != null) 
         {
@@ -204,7 +204,8 @@ public class BinaryTree
     // find the place before adding the node
     private void trvl_And_Add(Node node, Node new_node) 
     {
-        if (new_node.getKey() < node.getKey()) 
+        int compare = node.getName().compareTo(new_node.getName());
+        if (compare < 0 ) 
         {
             if (node.getLeftChild() == null) 
             {
@@ -218,7 +219,7 @@ public class BinaryTree
             }
 
         } 
-        else if (new_node.getKey() > node.getKey()) 
+        else if (compare > 0) 
         {
             if (node.getRightChild() == null) 
             {
@@ -236,6 +237,7 @@ public class BinaryTree
     public void traverse() 
     {
         wl.setVisible(true);
+        
         if (root != null) 
         {
             loop=0;

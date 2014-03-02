@@ -22,6 +22,9 @@ import java.sql.SQLException;
 public class database {
     //Declare public variable for connection
     public Connection con;
+    String tit,f_nm,s_nm;
+    int id;
+    BinaryTree Newtree =new BinaryTree();
     //a function is created to connect with database
     public void connection()
     {
@@ -57,8 +60,14 @@ public class database {
             while(result.next())
             {
                 System.out.print("| " + result.getString(1) + " | " + result.getString(2) + " | " + result.getString(3) + " | " + result.getString(4) + " | \n");
+                id = result.getInt(1);
+                tit = result.getString(2);
+                f_nm = result.getString(3);
+                s_nm = result.getString(4);
+                Newtree.insert(id, tit, f_nm, s_nm);
             }
             con.close();
+            Newtree.traverse();
         }
         catch( SQLException sql)
         {

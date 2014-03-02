@@ -25,13 +25,13 @@ public class DSA_Trees {
         database db = new database();
         db.select();
         BinaryTree Newtree =new BinaryTree();
-            Newtree.insert(2);
-            Newtree.insert(48);
-            Newtree.insert(20);
-            Newtree.insert(57);
-            Newtree.insert(3);
-            Newtree.insert(8);
-     
+//            Newtree.insert(2);
+//            Newtree.insert(48);
+//            Newtree.insert(20);
+//            Newtree.insert(57);
+//            Newtree.insert(3);
+//            Newtree.insert(8);
+//     
             Newtree.traverse();
     }
     

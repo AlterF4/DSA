@@ -8,11 +8,17 @@ public class Node
     private Node left;
     private Node right;
     private Node parent;   // keep a refrence 
-    private int key;
+    private int key; //ISBN
+    private String name; //Book name
+    private String fst_name; //author's first name
+    private String sur_name; //author's sur name
 
-    public Node(int key) 
+    public Node(int key,String name,String fst_name,String sur_name) 
     {
         this.key = key;
+        this.name = name;
+        this.fst_name = fst_name;
+        this.sur_name = sur_name;
         left = null;
         right = null;
     }
@@ -52,6 +58,21 @@ public class Node
         return key;
     }
 
+    public String getName()
+    {
+        return name;
+    }
+    
+    public String getf_name()
+    {
+        return fst_name;
+    }
+    
+    public String gets_name()
+    {
+        return sur_name;
+    }
+    
     public Node getParent() 
     {
         return parent;

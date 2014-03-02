@@ -89,6 +89,8 @@ public String selectisbn;
             }
         });
 
+        jTextField4.setEnabled(false);
+
         jButton2.setText("Delete");
 
         jButton3.setText("Cancel");

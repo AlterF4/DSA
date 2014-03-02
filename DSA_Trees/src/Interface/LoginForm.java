@@ -153,7 +153,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int com = u_name.getText().compareTo("admin");
+        int com = u_name.getText().toLowerCase().compareTo("admin");
         int com2 = p_word.getText().compareTo("abc123");
         if(com ==0 && com2 ==0)
         {

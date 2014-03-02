@@ -8,6 +8,7 @@
 package dsa_trees;
 
 //import java packages
+import Interface.Delete1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -94,4 +95,29 @@ public class database {
             System.out.println(ex.toString());
         }
     }   
+     public void selectisb()
+    { 
+        try
+        {   
+            Delete1 comb= new Delete1();
+            comb.setVisible(true);
+            connection();
+            PreparedStatement statement = con.prepareStatement("SELECT isbn FROM books");
+            ResultSet result = statement.executeQuery();
+            
+            while(result.next())
+                  {
+                      Global.addisbn=result.getInt("isbn");
+                  
+                      comb.set_combo(Global.addisbn);
+                      
+                  }
+        }
+        //catch exceptions
+        catch(SQLException sql)
+        {
+            System.out.println("Exception 1 threw"+ sql);
+        }
+        
+    }
 }

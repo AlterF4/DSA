@@ -10,6 +10,7 @@
  */
 package Interface;
 //import dsa_trees.database;
+import dsa_trees.Global;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -182,38 +183,13 @@ public String selectisbn;
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         
-        Connection con;
-        try
-        {
-            //System.out.print("Inside the function");
-            Class.forName("com.mysql.jdbc.Driver");
-            //connection is created
-            //System.out.print("Inside the function1");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/test"); 
-            //System.out.print("Inside the function2");
-            PreparedStatement statement = con.prepareStatement("SELECT isbn FROM books");
-            //System.out.print("Inside the function3");
-            ResultSet result = statement.executeQuery();
-            //System.out.print("Inside the function4");
-            
-            while(result.next())
-                  {
-                      int addisbn=result.getInt("isbn");
-                  
-                      combo1.addItem(addisbn);
-                     
-                      selectisbn=combo1.getSelectedItem().toString();
-                    }
-            
-            
-        }
-        //catch exceptions
-        catch(ClassNotFoundException | SQLException sql)
-        {
-            System.out.println("Exception 1 threw"+ sql);
-        }
+        
     }//GEN-LAST:event_formWindowActivated
-
+public void set_combo(int isbn)       
+    { 
+        System.out.println(Global.addisbn);
+        combo1.addItem(Global.addisbn);
+    }
     /**
      * @param args the command line arguments
      */

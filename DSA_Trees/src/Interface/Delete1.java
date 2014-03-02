@@ -250,7 +250,7 @@ public String selectisbn;
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox combo1;
+    public javax.swing.JComboBox combo1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;

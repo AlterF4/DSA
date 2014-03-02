@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -75,4 +76,22 @@ public class database {
         }
     }
     
+    
+    public void insert(String isbn,String title,String f_name,String s_name)
+    {
+        String des = "desc";
+        try
+        {
+            //System.out.println(title +" "+ f_name+" "+ s_name +" "+ isbn);
+            connection();
+            Statement stmt = (Statement) con.createStatement();
+            String insert = "INSERT INTO books VALUES ('" + isbn + "','" + title + "','" + f_name + "','" + s_name + "')";
+            stmt.executeUpdate(insert);
+            con.close();
+        }   
+        catch (Exception ex)
+        {
+            System.out.println(ex.toString());
+        }
+    }   
 }

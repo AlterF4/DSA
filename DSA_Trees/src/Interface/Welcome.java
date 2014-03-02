@@ -10,6 +10,8 @@
  */
 package Interface;
 
+import dsa_trees.Global;
+
 /**
  *
  * @author madushan
@@ -59,12 +61,17 @@ public class Welcome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setResizable(false);
         setUndecorated(true);
+        setResizable(false);
 
         jButton4.setText("Cancel");
 
         jButton5.setText("Next");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -110,6 +117,17 @@ public class Welcome extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -192,6 +210,17 @@ public class Welcome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        jTable2.getModel().setValueAt("wert", 3, 3);
+    }//GEN-LAST:event_jButton5ActionPerformed
+    
+    public void settable(int loop)
+    {
+        int i = loop;
+        jTable2.getModel().setValueAt(Global.id, i, 0);
+        jTable2.getModel().setValueAt(Global.name, i, 1);
+    }
     /**
      * @param args the command line arguments
      */

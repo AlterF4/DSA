@@ -1,8 +1,12 @@
 package dsa_trees;
 
+import Interface.Welcome;
+
 public class BinaryTree 
 {
+    Welcome wl = new Welcome();
     //Declaring variables
+    public int loop;
     public Node root;
     public Node returnNode;
 
@@ -20,7 +24,7 @@ public class BinaryTree
 
     // inserting a new node
     public void insert(int key) 
-    {
+    { 
         Node new_node = new Node(key);
 
         if (root == null) 
@@ -231,8 +235,10 @@ public class BinaryTree
     // taverse the tree through the nodes
     public void traverse() 
     {
+        wl.setVisible(true);
         if (root != null) 
         {
+            loop=0;
                 // if the root is empty there is no tree to be traverse , so the task is end 
             // if the root isn't an empty one
             Node nodetraverse = root;
@@ -264,7 +270,8 @@ public class BinaryTree
             Inordertraverse(node.getLeftChild());
         }
         System.out.println(node.getKey());
-
+        wl.settable(loop);
+        loop = loop +1;
         if (node.getRightChild() != null) 
         {
             Inordertraverse(node.getRightChild());

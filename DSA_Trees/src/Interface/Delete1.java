@@ -9,7 +9,7 @@
  * Created on Feb 22, 2014, 10:57:08 PM
  */
 package Interface;
-import dsa_trees.database;
+//import dsa_trees.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -188,9 +188,13 @@ public String selectisbn;
             //System.out.print("Inside the function");
             Class.forName("com.mysql.jdbc.Driver");
             //connection is created
+            //System.out.print("Inside the function1");
             con = DriverManager.getConnection("jdbc:mysql://localhost/test"); 
+            //System.out.print("Inside the function2");
             PreparedStatement statement = con.prepareStatement("SELECT isbn FROM books");
+            //System.out.print("Inside the function3");
             ResultSet result = statement.executeQuery();
+            //System.out.print("Inside the function4");
             
             while(result.next())
                   {

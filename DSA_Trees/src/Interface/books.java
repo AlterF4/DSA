@@ -122,8 +122,8 @@ public class books extends javax.swing.JFrame {
         int i = loop;
         jTable1.getModel().setValueAt(Global.id, i, 0);
         jTable1.getModel().setValueAt(Global.name, i, 1);
-        jTable1.getModel().setValueAt(Global.name, i, 2);
-        jTable1.getModel().setValueAt(Global.name, i, 3);
+        jTable1.getModel().setValueAt(Global.f_name, i, 2);
+        jTable1.getModel().setValueAt(Global.s_name, i, 3);
     }
     
     private void cls_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cls_btnActionPerformed

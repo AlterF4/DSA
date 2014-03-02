@@ -7,6 +7,9 @@
 package dsa_trees;
 //import dsa_trees.dbconnection;
 
+import Interface.LoginForm;
+
+
 //import pkgnew.dbconnection;
 
 
@@ -22,9 +25,11 @@ public class DSA_Trees {
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        database db = new database();
-        db.select();
-        BinaryTree Newtree =new BinaryTree();
+        LoginForm log = new LoginForm();
+        log.setVisible(true);
+//        database db = new database();
+//        db.select();
+//        BinaryTree Newtree =new BinaryTree();
 //            Newtree.insert(2);
 //            Newtree.insert(48);
 //            Newtree.insert(20);

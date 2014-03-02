@@ -8,7 +8,7 @@
 package dsa_trees;
 
 //import java packages
-import Interface.Delete1;
+import Interface.Delete;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -99,7 +99,7 @@ public class database {
     { 
         try
         {   
-            Delete1 comb= new Delete1();
+            Delete comb= new Delete();
             comb.setVisible(true);
             connection();
             PreparedStatement statement = con.prepareStatement("SELECT isbn FROM books");

@@ -32,7 +32,7 @@ public class DSA_Trees {
 //            Newtree.insert(3);
 //            Newtree.insert(8);
 //     
-            Newtree.traverse();
+            //Newtree.traverse();
     }
     
 }

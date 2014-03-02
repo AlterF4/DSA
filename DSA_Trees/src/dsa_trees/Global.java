@@ -14,4 +14,6 @@ public class Global {
     
     public static int id;
     public static String name;
+    public static String f_name;
+    public static String s_name;
 }

@@ -212,7 +212,7 @@ public class Welcome extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        jTable2.getModel().setValueAt("wert", 3, 3);
+        //jTable2.getModel().setValueAt("wert", 3, 3);
     }//GEN-LAST:event_jButton5ActionPerformed
     
     public void settable(int loop)
@@ -220,6 +220,8 @@ public class Welcome extends javax.swing.JFrame {
         int i = loop;
         jTable2.getModel().setValueAt(Global.id, i, 0);
         jTable2.getModel().setValueAt(Global.name, i, 1);
+        jTable2.getModel().setValueAt(Global.name, i, 2);
+        jTable2.getModel().setValueAt(Global.name, i, 3);
     }
     /**
      * @param args the command line arguments

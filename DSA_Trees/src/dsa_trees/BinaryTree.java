@@ -1,10 +1,11 @@
 package dsa_trees;
 
-import Interface.Welcome;
+
+import Interface.books;
 
 public class BinaryTree 
 {
-    Welcome wl = new Welcome();
+    books bk = new books();
     //Declaring variables
     public int loop;
     public Node root;
@@ -205,7 +206,8 @@ public class BinaryTree
     private void trvl_And_Add(Node node, Node new_node) 
     {
         int compare = node.getName().compareTo(new_node.getName());
-        if (compare < 0 ) 
+        //System.out.println(compare);
+        if (compare > 0 ) 
         {
             if (node.getLeftChild() == null) 
             {
@@ -219,7 +221,7 @@ public class BinaryTree
             }
 
         } 
-        else if (compare > 0) 
+        else if (compare < 0) 
         {
             if (node.getRightChild() == null) 
             {
@@ -236,7 +238,7 @@ public class BinaryTree
     // taverse the tree through the nodes
     public void traverse() 
     {
-        wl.setVisible(true);
+        bk.setVisible(true);
         
         if (root != null) 
         {
@@ -272,7 +274,11 @@ public class BinaryTree
             Inordertraverse(node.getLeftChild());
         }
         System.out.println(node.getKey());
-        wl.settable(loop);
+        Global.id = node.getKey();
+        Global.name = node.getName();
+        Global.f_name = node.getf_name();
+        Global.s_name = node.gets_name();
+        bk.settable(loop);
         loop = loop +1;
         if (node.getRightChild() != null) 
         {

@@ -1,7 +1,8 @@
 package dsa_trees;
 
-
 import Interface.books;
+
+
 
 public class BinaryTree 
 {
@@ -206,8 +207,7 @@ public class BinaryTree
     private void trvl_And_Add(Node node, Node new_node) 
     {
         int compare = node.getName().compareTo(new_node.getName());
-        //System.out.println(compare);
-        if (compare > 0 ) 
+        if (compare < 0 ) 
         {
             if (node.getLeftChild() == null) 
             {
@@ -221,7 +221,7 @@ public class BinaryTree
             }
 
         } 
-        else if (compare < 0) 
+        else if (compare > 0) 
         {
             if (node.getRightChild() == null) 
             {

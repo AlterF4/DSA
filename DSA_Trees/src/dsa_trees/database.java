@@ -26,6 +26,7 @@ public class database {
     public Connection con;
     String tit,f_nm,s_nm;
     int id;
+    String ch1;
     BinaryTree Newtree =new BinaryTree();
     //a function is created to connect with database
     public void connection()
@@ -95,6 +96,8 @@ public class database {
             System.out.println(ex.toString());
         }
     }   
+    
+    
      public void selectisb()
     { 
         try
@@ -108,9 +111,7 @@ public class database {
             while(result.next())
                   {
                       Global.addisbn=result.getInt("isbn");
-                  
                       comb.set_combo(Global.addisbn);
-                      
                   }
         }
         //catch exceptions
@@ -118,6 +119,32 @@ public class database {
         {
             System.out.println("Exception 1 threw"+ sql);
         }
-        
     }
+     
+     public String idsearch(String name)
+     {
+        
+        try
+        {
+            connection();
+            PreparedStatement statement = con.prepareStatement("SELECT isbn FROM books WHERE title='"+name+"' ");
+            ResultSet rs1    = statement.executeQuery();
+            int ch;
+            
+            if (rs1.next())
+            { 
+                ch =rs1.getInt("isbn");
+                ch1 = rs1.getString("isbn");
+            //jTextField4.setText("" + ch);}
+            //ch= Integer.parseInt(jTextField4.getText());
+                
+            }
+            //return ch1;
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Exception:"+e);
+        }   
+        return ch1;
+     }
 }

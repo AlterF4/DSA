@@ -19,6 +19,7 @@ import dsa_trees.database;
 public class welcome extends javax.swing.JFrame {
 
     /** Creates new form Welcome */
+   
     public welcome() {
         initComponents();
     }

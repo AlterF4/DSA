@@ -72,6 +72,11 @@ public class Insert extends javax.swing.JFrame {
         jLabel5.setText("Delete");
 
         cncl_btn.setText("Cancel");
+        cncl_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cncl_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +159,11 @@ private void sur_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         db.insert(isbn_no.getText(),bk_titl.getText().toLowerCase(),fst_nam.getText(),sur_name.getText());
         //db.insert(title,f_name,s_name,isbn_num);
     }//GEN-LAST:event_insrt_btnActionPerformed
+
+    private void cncl_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cncl_btnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cncl_btnActionPerformed
 
     /**
      * @param args the command line arguments

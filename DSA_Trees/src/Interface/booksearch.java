@@ -17,6 +17,8 @@ public class booksearch extends javax.swing.JFrame {
      */
     public booksearch() {
         initComponents();
+        buttonGroup2.add(isbn_radio);
+        buttonGroup2.add(book_radio);
     }
 
     /**
@@ -28,11 +30,12 @@ public class booksearch extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        isbn_radio = new javax.swing.JRadioButton();
+        book_radio = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         isbn_no = new javax.swing.JTextField();
@@ -50,19 +53,19 @@ public class booksearch extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Search By");
 
-        jRadioButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jRadioButton1.setText("ISBN");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        isbn_radio.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        isbn_radio.setText("ISBN");
+        isbn_radio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                isbn_radioActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jRadioButton2.setText("Book Name");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        book_radio.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        book_radio.setText("Book Name");
+        book_radio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                book_radioActionPerformed(evt);
             }
         });
 
@@ -77,6 +80,11 @@ public class booksearch extends javax.swing.JFrame {
         jButton1.setText("Search");
 
         jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,9 +106,9 @@ public class booksearch extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(76, 76, 76)
-                        .addComponent(jRadioButton1)
+                        .addComponent(isbn_radio)
                         .addGap(43, 43, 43)
-                        .addComponent(jRadioButton2)
+                        .addComponent(book_radio)
                         .addGap(60, 60, 60))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,8 +132,8 @@ public class booksearch extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(isbn_radio)
+                    .addComponent(book_radio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -170,15 +178,20 @@ public class booksearch extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void isbn_radioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbn_radioActionPerformed
         // TODO add your handling code here:
         book_nm.enable(false);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_isbn_radioActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void book_radioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_radioActionPerformed
         // TODO add your handling code here:
         isbn_no.enable(false);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_book_radioActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +230,10 @@ public class booksearch extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField book_nm;
+    private javax.swing.JRadioButton book_radio;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField isbn_no;
+    private javax.swing.JRadioButton isbn_radio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -225,8 +241,6 @@ public class booksearch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables

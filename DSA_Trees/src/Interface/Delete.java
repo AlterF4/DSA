@@ -10,16 +10,12 @@
  */
 package Interface;
 //import dsa_trees.database;
+import dsa_trees.BinaryTree;
 import dsa_trees.Global;
 import dsa_trees.database;
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -28,7 +24,8 @@ import java.sql.SQLException;
 
 public class Delete extends javax.swing.JFrame {
     
-public String selectisbn;
+    
+    public String selectisbn;
     /** Creates new form Delete */
     public Delete() {
         initComponents();
@@ -53,17 +50,19 @@ public String selectisbn;
         book_radio = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        book_name = new javax.swing.JTextField();
         show_isbn = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        del_btn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         isbn_cmbo = new javax.swing.JComboBox();
         available = new javax.swing.JLabel();
         availability = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        book_name = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -99,34 +98,15 @@ public String selectisbn;
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Book Name");
 
-        book_name.setEnabled(false);
-        book_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                book_nameActionPerformed(evt);
-            }
-        });
-        book_name.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                book_nameInputMethodTextChanged(evt);
-            }
-        });
-        book_name.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                book_nameKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                book_nameKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                book_nameKeyTyped(evt);
-            }
-        });
-
         show_isbn.setEnabled(false);
 
-        jButton2.setText("Delete");
+        del_btn.setText("Delete");
+        del_btn.setEnabled(false);
+        del_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                del_btnActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancel");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +115,20 @@ public String selectisbn;
             }
         });
 
+        isbn_cmbo.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                isbn_cmboPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        isbn_cmbo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                isbn_cmboItemStateChanged(evt);
+            }
+        });
         isbn_cmbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 isbn_cmboActionPerformed(evt);
@@ -146,97 +140,106 @@ public String selectisbn;
         availability.setForeground(new java.awt.Color(0, 204, 0));
         availability.setText("available");
 
+        book_name.setColumns(20);
+        book_name.setRows(5);
+        book_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                book_nameKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(book_name);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(del_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(76, 76, 76)
-                                .addComponent(isbn_radio)
-                                .addGap(18, 18, 18)
-                                .addComponent(book_radio))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(87, 87, 87)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(book_name)
-                                    .addComponent(isbn_cmbo, 0, 142, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(show_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(83, 83, 83)
+                        .addComponent(jLabel3)
+                        .addGap(76, 76, 76)
+                        .addComponent(isbn_radio)
+                        .addGap(18, 18, 18)
+                        .addComponent(book_radio))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
+                        .addGap(132, 132, 132)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(105, 105, 105)
+                                .addComponent(isbn_cmbo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(show_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(48, 48, 48)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
                         .addComponent(available)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(availability)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))))
+                .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(36, 36, 36)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(isbn_radio)
                     .addComponent(book_radio))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(5, 5, 5))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(isbn_cmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(show_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(isbn_cmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(show_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(book_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(49, 49, 49)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(available)
                     .addComponent(availability))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(del_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -246,18 +249,17 @@ public String selectisbn;
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         show_isbn.setVisible(false);
         availability.setText("");
+        book_name.setEnabled(false);
         //book_name.setEnabled(false);
     }//GEN-LAST:event_formWindowActivated
-
-    private void book_nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_book_nameKeyTyped
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_book_nameKeyTyped
 
     private void isbn_radioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbn_radioActionPerformed
         // TODO add your handling code here:
         isbn_cmbo.setEnabled(true);
         book_name.setEnabled(false);
+        show_isbn.setText("");
+        show_isbn.setVisible(false);
+        del_btn.setEnabled(false);
     }//GEN-LAST:event_isbn_radioActionPerformed
 
     private void book_radioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_radioActionPerformed
@@ -265,25 +267,63 @@ public String selectisbn;
         book_name.setEnabled(true);
         show_isbn.setVisible(true);
         isbn_cmbo.setEnabled(false);
+        del_btn.setEnabled(false);
     }//GEN-LAST:event_book_radioActionPerformed
 
     private void isbn_cmboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbn_cmboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_isbn_cmboActionPerformed
 
-    private void book_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_nameActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_book_nameActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void book_nameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_book_nameInputMethodTextChanged
+    private void isbn_cmboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_isbn_cmboItemStateChanged
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_book_nameInputMethodTextChanged
+    }//GEN-LAST:event_isbn_cmboItemStateChanged
 
-    private void book_nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_book_nameKeyPressed
+    private void isbn_cmboPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_isbn_cmboPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_book_nameKeyPressed
+        show_isbn.setText(isbn_cmbo.getSelectedItem().toString());
+        System.out.println(show_isbn.getText());
+                database db = new database();
+        String h =(db.namesearch(show_isbn.getText()));
+        System.out.println(h);
+        if (h !=null)
+        {
+            book_name.setText(h);
+            availability.setText("available");
+            availability.setForeground(Color.GREEN);
+            show_isbn.setText(isbn_cmbo.getSelectedItem().toString());
+            del_btn.setEnabled(true);
+        }
+        else
+        {
+            availability.setText("not available");
+            availability.setForeground(Color.RED);
+            del_btn.setEnabled(false);
+        }
+    }//GEN-LAST:event_isbn_cmboPopupMenuWillBecomeInvisible
+
+    private void del_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_btnActionPerformed
+        // TODO add your handling code here:
+        database db = new database();
+        if(show_isbn.getText()!= null)
+        {
+            db.todelete();
+            db.delete(show_isbn.getText());
+            System.out.println("It's Deleted");
+            JOptionPane.showMessageDialog(this,"Data has been Deleted");
+        }
+        else
+        {
+            db.todelete();
+            db.delete(isbn_cmbo.getSelectedItem().toString());
+            System.out.println("It's Deleted");
+            JOptionPane.showMessageDialog(this,"Data has been Deleted");
+        }
+    }//GEN-LAST:event_del_btnActionPerformed
 
     private void book_nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_book_nameKeyReleased
         // TODO add your handling code here:
@@ -295,18 +335,15 @@ public String selectisbn;
             show_isbn.setText(h);
             availability.setText("available");
             availability.setForeground(Color.GREEN);
+            del_btn.setEnabled(true);
         }
         else
         {
             availability.setText("not available");
             availability.setForeground(Color.RED);
+            del_btn.setEnabled(false);
         }
     }//GEN-LAST:event_book_nameKeyReleased
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
     
     public void set_combo(int isbn)       
     { 
@@ -351,18 +388,19 @@ public String selectisbn;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel availability;
     private javax.swing.JLabel available;
-    private javax.swing.JTextField book_name;
+    private javax.swing.JTextArea book_name;
     private javax.swing.JRadioButton book_radio;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton del_btn;
     public javax.swing.JComboBox isbn_cmbo;
     private javax.swing.JRadioButton isbn_radio;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField show_isbn;
     // End of variables declaration//GEN-END:variables

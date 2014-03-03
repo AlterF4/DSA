@@ -84,30 +84,39 @@ public class BinaryTree
     public boolean delete(int value,String name,String fst_name,String sur_name) 
     {
         Node nodeToDelete = find(value,name,fst_name,sur_name);
-
+        //System.out.println("  To be deleted "+nodeToDelete);
         if (nodeToDelete != null) 
         {
+            //System.out.println("   It's null ");
             if (nodeToDelete.getLeftChild() == null && nodeToDelete.getRightChild() == null) 
             {
+                //System.out.println("  1 ");
                 // If leftchild and rightChild doesnot exsit in the tree
                 delcase1(nodeToDelete);
             } 
             else if (nodeToDelete.getLeftChild() != null) 
             {
+                //System.out.println("  2 ");
                 // In case where leftChild should be Deleted
                 delcase2(nodeToDelete);
             } 
             else if (nodeToDelete.getRightChild() != null && nodeToDelete.getLeftChild() != null) 
             {
+                //System.out.println("  3 ");
                 // In case where rightChild Should be Deleted 
                 delcase3(nodeToDelete);
             } 
             else if (nodeToDelete.getRightChild() != null) 
             {
+                //System.out.println("  4 ");
                 delcase2(nodeToDelete);
             }
+            else
+            {
+                System.out.println(" Something wrong...!!");
+            }
         }
-
+        //System.out.println("   It's null ");
         return false;
     }
 
@@ -137,12 +146,13 @@ public class BinaryTree
 
             if (nodeToDelete.getLeftChild() != null) 
             {
-
+                //System.out.println(" Worked 1 ");
                 nodeToDelete.getParent().setLeftChild(nodeToDelete.getLeftChild());
 
             } 
             else if (nodeToDelete.getRightChild() != null) 
             {
+                //System.out.println(" Worked 2 ");
                 nodeToDelete.getParent().setLeftChild(nodeToDelete.getRightChild());
             }
         } 
@@ -151,12 +161,15 @@ public class BinaryTree
 
             if (nodeToDelete.getLeftChild() != null) 
             {
+                //System.out.println(" Worked 3 ");
                 nodeToDelete.getParent().setRightChild(nodeToDelete.getLeftChild());
 
             } 
             else if (nodeToDelete.getRightChild() != null) 
             {
+                //System.out.println(" Worked 4 ");
                 nodeToDelete.getParent().setRightChild(nodeToDelete.getRightChild());
+               // System.out.println(" Worked 4 (Y) ");
             }
 
         }
@@ -207,7 +220,7 @@ public class BinaryTree
     private void trvl_And_Add(Node node, Node new_node) 
     {
         int compare = node.getName().compareTo(new_node.getName());
-        if (compare < 0 ) 
+        if (compare > 0 ) 
         {
             if (node.getLeftChild() == null) 
             {
@@ -221,7 +234,7 @@ public class BinaryTree
             }
 
         } 
-        else if (compare > 0) 
+        else if (compare < 0) 
         {
             if (node.getRightChild() == null) 
             {
@@ -286,5 +299,54 @@ public class BinaryTree
         }
     }
 
+    public void traverse1() 
+    {
+        //bk.setVisible(true);
+        
+        if (root != null) 
+        {
+            //loop=0;
+                // if the root is empty there is no tree to be traverse , so the task is end 
+            // if the root isn't an empty one
+            Node nodetraverse = root;
+            if (nodetraverse.getLeftChild() == null && nodetraverse.getRightChild() == null) 
+            {
+                System.out.println(nodetraverse.getKey());
+            } 
+            else 
+            {
+                if (nodetraverse.getLeftChild() != null) 
+                {
+                    // if the left child of the node is null recursive call for the method Inordertraverse
+                    Inordertraverse1(nodetraverse.getLeftChild());
+                }
+                if (nodetraverse.getRightChild() != null) 
+                {
+                    // if the right child of the node null recursive call for the method Inordertraverse
+                    Inordertraverse1(nodetraverse.getRightChild());
+                }
+            }
+        }
+    }
+
+    // transversal through the nodes and print the nodes
+    private void Inordertraverse1(Node node) 
+    {
+        if (node.getLeftChild() != null) 
+        {
+            Inordertraverse1(node.getLeftChild());
+        }
+        System.out.println(node.getKey());
+//        Global.id = node.getKey();
+//        Global.name = node.getName();
+//        Global.f_name = node.getf_name();
+//        Global.s_name = node.gets_name();
+//        bk.settable(loop);
+//        loop = loop +1;
+        if (node.getRightChild() != null) 
+        {
+            Inordertraverse1(node.getRightChild());
+        }
+    }
 }//close tag *Tag Matching ;)
 

@@ -78,6 +78,38 @@ public class database {
         }
     }
     
+    public void todelete()
+    {
+        try
+        {
+            //call connection function
+            connection();
+            //define sql statement
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM books");
+            //retrive data to resultset
+            ResultSet result = statement.executeQuery();
+            //print out put
+            while(result.next())
+            {
+                System.out.print("| " + result.getString(1) + " | " + result.getString(2) + " | " + result.getString(3) + " | " + result.getString(4) + " | \n");
+                id = result.getInt(1);
+                tit = result.getString(2);
+                f_nm = result.getString(3);
+                s_nm = result.getString(4);
+                Newtree.insert(id, tit, f_nm, s_nm);
+            }
+            con.close();
+            Newtree.traverse1();
+            //System.out.println(Global.name);
+            boolean b = Newtree.delete(Global.id,Global.name,Global.f_name,Global.s_name);
+            System.out.println(b);
+            Newtree.traverse();
+        }
+        catch( SQLException sql)
+        {
+            System.out.println("Exception 1 threw"+ sql);
+        }
+    }
     
     public void insert(String isbn,String title,String f_name,String s_name)
     {
@@ -91,7 +123,7 @@ public class database {
             stmt.executeUpdate(insert);
             con.close();
         }   
-        catch (Exception ex)
+        catch (SQLException ex)
         {
             System.out.println(ex.toString());
         }
@@ -113,6 +145,7 @@ public class database {
                       Global.addisbn=result.getInt("isbn");
                       comb.set_combo(Global.addisbn);
                   }
+            con.close();
         }
         //catch exceptions
         catch(SQLException sql)
@@ -123,28 +156,83 @@ public class database {
      
      public String idsearch(String name)
      {
-        
         try
         {
             connection();
-            PreparedStatement statement = con.prepareStatement("SELECT isbn FROM books WHERE title='"+name+"' ");
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM books WHERE title='"+name+"' ");
             ResultSet rs1    = statement.executeQuery();
-            int ch;
+//            int ch;
             
             if (rs1.next())
             { 
-                ch =rs1.getInt("isbn");
+//                ch =rs1.getInt("isbn");
                 ch1 = rs1.getString("isbn");
+                Global.id = rs1.getInt("isbn");
+                Global.name = rs1.getString("title");
+                Global.f_name = rs1.getString("author_fname");
+                Global.s_name = rs1.getString("author_sname");
             //jTextField4.setText("" + ch);}
             //ch= Integer.parseInt(jTextField4.getText());
-                
             }
-            //return ch1;
+            con.close();
         }
         catch(SQLException e)
         {
             System.out.println("Exception:"+e);
         }   
         return ch1;
+     }
+     
+     
+     public String namesearch(String book_id)
+     {
+        
+        try
+        {
+            connection();
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM books WHERE isbn='"+book_id+"' ");
+            ResultSet rs1    = statement.executeQuery();
+            if (rs1.next())
+            { 
+                ch1 = rs1.getString("title");
+                Global.id = rs1.getInt("isbn");
+                Global.name = rs1.getString("title");
+                Global.f_name = rs1.getString("author_fname");
+                Global.s_name = rs1.getString("author_sname");
+            }
+            con.close();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Exception:"+e);
+        }   
+        return ch1;
+     }
+     
+     public String delete(String id)
+     {
+         int isbn_cod = Integer.parseInt(id);
+         String sql = "DELETE FROM books WHERE isbn =?";
+         System.out.println("  ISBN "+isbn_cod);
+         connection();
+         try
+         {
+             PreparedStatement statement = con.prepareStatement("DELETE FROM books WHERE isbn ='"+isbn_cod+"'");
+             //statement.setString(1, id);
+             statement.execute();
+             System.out.println("DONE.........");
+         }
+         catch(SQLException e)
+         {
+             System.out.println(e);
+         }
+     
+        return ch1;
+     }
+     
+     public void find_nod()
+     {
+         Newtree.find(id, tit, f_nm, s_nm);
+     
      }
 }

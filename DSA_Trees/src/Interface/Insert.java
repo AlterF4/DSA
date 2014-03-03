@@ -11,6 +11,7 @@
 package Interface;
 
 import dsa_trees.database;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -157,7 +158,8 @@ private void sur_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         database db = new database();
         //convert();
         db.insert(isbn_no.getText(),bk_titl.getText().toLowerCase(),fst_nam.getText(),sur_name.getText());
-        //db.insert(title,f_name,s_name,isbn_num);
+        JOptionPane.showMessageDialog(this,"Data has been Inserted sucessfully");
+//db.insert(title,f_name,s_name,isbn_num);
     }//GEN-LAST:event_insrt_btnActionPerformed
 
     private void cncl_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cncl_btnActionPerformed

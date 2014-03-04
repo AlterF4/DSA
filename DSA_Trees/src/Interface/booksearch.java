@@ -6,6 +6,9 @@
 
 package Interface;
 
+import dsa_trees.database;
+import java.awt.Color;
+
 /**
  *
  * @author Yasi
@@ -39,15 +42,21 @@ public class booksearch extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         isbn_no = new javax.swing.JTextField();
-        book_nm = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         srch_btn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         available = new javax.swing.JLabel();
         availability = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        book_nm = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel1.setText("Search");
@@ -78,7 +87,11 @@ public class booksearch extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Book Name");
 
-        jTextField3.setEnabled(false);
+        isbn_no.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                isbn_noKeyReleased(evt);
+            }
+        });
 
         srch_btn.setText("Search");
 
@@ -94,6 +107,15 @@ public class booksearch extends javax.swing.JFrame {
         availability.setForeground(new java.awt.Color(0, 204, 0));
         availability.setText("available");
 
+        book_nm.setColumns(20);
+        book_nm.setRows(5);
+        book_nm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                book_nmKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(book_nm);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,6 +128,16 @@ public class booksearch extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(isbn_no, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(82, 82, 82)
@@ -116,57 +148,39 @@ public class booksearch extends javax.swing.JFrame {
                         .addComponent(book_radio))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(52, 52, 52)
-                                        .addComponent(book_nm, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(90, 90, 90)
-                                        .addComponent(isbn_no, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                        .addGap(121, 121, 121)
                         .addComponent(available)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(availability)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(isbn_radio)
+                    .addComponent(book_radio))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(isbn_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(isbn_radio)
-                            .addComponent(book_radio)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(isbn_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(book_nm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel4)))
-                .addGap(36, 36, 36)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(16, 16, 16)))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(available)
                     .addComponent(availability))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,7 +193,7 @@ public class booksearch extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +208,15 @@ public class booksearch extends javax.swing.JFrame {
 
     private void isbn_radioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbn_radioActionPerformed
         // TODO add your handling code here:
-        book_nm.setEditable(false);
-        isbn_no.setEditable(true);
+        book_nm.setEnabled(false);
+        isbn_no.setEnabled(true);
         srch_btn.setEnabled(false);
     }//GEN-LAST:event_isbn_radioActionPerformed
 
     private void book_radioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_radioActionPerformed
         // TODO add your handling code here:
         isbn_no.setEnabled(false);
-        book_nm.setEditable(true);
+        book_nm.setEnabled(true);
         srch_btn.setEnabled(false);
     }//GEN-LAST:event_book_radioActionPerformed
 
@@ -212,6 +226,52 @@ public class booksearch extends javax.swing.JFrame {
         sf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        book_nm.setEnabled(false);
+        availability.setText("");
+    }//GEN-LAST:event_formWindowActivated
+
+    private void isbn_noKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isbn_noKeyReleased
+        // TODO add your handling code here:
+        database db = new database();
+        String h =(db.namesearch(isbn_no.getText()));
+        System.out.println(h);
+        if (h !=null)
+        {
+            book_nm.setText(h);
+            availability.setText("available");
+            availability.setForeground(Color.GREEN);
+            srch_btn.setEnabled(true);
+        }
+        else
+        {
+            availability.setText("not available");
+            availability.setForeground(Color.RED);
+            srch_btn.setEnabled(false);
+        }
+    }//GEN-LAST:event_isbn_noKeyReleased
+
+    private void book_nmKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_book_nmKeyReleased
+        // TODO add your handling code here:
+        database db = new database();
+        String h =(db.idsearch(book_nm.getText()));
+        System.out.println(h);
+        if (h !=null)
+        {
+            isbn_no.setText(h);
+            availability.setText("available");
+            availability.setForeground(Color.GREEN);
+            srch_btn.setEnabled(true);
+        }
+        else
+        {
+            availability.setText("not available");
+            availability.setForeground(Color.RED);
+            srch_btn.setEnabled(false);
+        }
+    }//GEN-LAST:event_book_nmKeyReleased
 
     /**
      * @param args the command line arguments
@@ -251,7 +311,7 @@ public class booksearch extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel availability;
     private javax.swing.JLabel available;
-    private javax.swing.JTextField book_nm;
+    private javax.swing.JTextArea book_nm;
     private javax.swing.JRadioButton book_radio;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField isbn_no;
@@ -262,8 +322,8 @@ public class booksearch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton srch_btn;
     // End of variables declaration//GEN-END:variables
 }

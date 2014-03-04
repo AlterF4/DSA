@@ -60,7 +60,7 @@ public class Delete extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         book_name = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

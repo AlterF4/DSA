@@ -94,18 +94,21 @@ public class BinaryTree
                 // If leftchild and rightChild doesnot exsit in the tree
                 delcase1(nodeToDelete);
             } 
+            
+            else if (nodeToDelete.getRightChild() != null && nodeToDelete.getLeftChild() != null) 
+            {
+                //System.out.println("  3 ");
+                // In case where rightChild Should be Deleted 
+                delcase3(nodeToDelete);
+            }
+            
             else if (nodeToDelete.getLeftChild() != null) 
             {
                 //System.out.println("  2 ");
                 // In case where leftChild should be Deleted
                 delcase2(nodeToDelete);
             } 
-            else if (nodeToDelete.getRightChild() != null && nodeToDelete.getLeftChild() != null) 
-            {
-                //System.out.println("  3 ");
-                // In case where rightChild Should be Deleted 
-                delcase3(nodeToDelete);
-            } 
+             
             else if (nodeToDelete.getRightChild() != null) 
             {
                 //System.out.println("  4 ");

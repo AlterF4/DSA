@@ -128,6 +128,8 @@ public class books extends javax.swing.JFrame {
     
     private void cls_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cls_btnActionPerformed
         // TODO add your handling code here:
+        Search_Form sf = new Search_Form();
+        sf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cls_btnActionPerformed
 

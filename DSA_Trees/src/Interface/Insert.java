@@ -80,7 +80,7 @@ public class Insert extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
-        jLabel5.setText("Delete");
+        jLabel5.setText("Insert");
 
         cncl_btn.setText("Cancel");
         cncl_btn.addActionListener(new java.awt.event.ActionListener() {
